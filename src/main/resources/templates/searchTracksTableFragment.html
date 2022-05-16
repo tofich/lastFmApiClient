@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="searchTracksTableFragment">
+    <div class="container-fluid mt-1">
+        <div class="col-11 mx-auto">
+            <table class="table table-hover" style="text-align: left;">
+                <thead class="table-success">
+                <tr>
+                    <th>№</th>
+                    <th>Название</th>
+                    <th>Количество слушателей</th>
+                    <th>Исполнитель</th>
+                    <th>Послушать на Last.fm</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="track,i : ${tracks.getListTracks()}">
+                    <td th:text="${i.count}"/>
+                    <td>
+                        <form method="post" th:action="@{'/track/getinfo'}">
+                            <input type="hidden" name="name" th:value="${track.getName()}">
+                            <input type="hidden" name="artist" th:value="${track.getNameArtist()}">
+                            <button class="btn btn-link" th:text="${track.getName()}" type="submit"/>
+                        </form>
+                    </td>
+                    <td th:text="${track.getListeners()}"/>
+                    <td><a th:href="${track.getArtist()}" th:text="${track.getNameArtist()}"/></td>
+                    <td><a th:href="${track.getUrl()}" th:text="${track.getName()}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

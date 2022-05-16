@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{headerFragmentWithTitle :: headerFragmentWithTitle('Главная')}" />
+
+<body>
+
+<div th:replace="~{mainMenu :: mainMenu(index)}" />
+<div class="container-fluid">
+    <h2 class="p-3">Rest-клиент Last.fm для получения информации о треках и исполнителях.
+        <br>Реализован с использованием Spring RestTemplate.</h2>
+</div>
+<div th:replace="~{footerFragment :: footerFragment}" />
+
+</body>
+</html>

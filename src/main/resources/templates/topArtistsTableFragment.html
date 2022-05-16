@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="topArtistsTableFragment">
+    <div class="container-fluid mt-1">
+        <div class="col-11 mx-auto">
+            <table class="table table-hover" style="text-align: left;">
+                <thead class="table-success">
+                <tr>
+                    <th>№</th>
+                    <th>Исполнитель</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="artist,i : ${artists.getListArtists()}">
+                    <td th:text="${i.count}"/>
+                    <td><a th:href="${artist.getUrl()}" th:text="${artist.getName()}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

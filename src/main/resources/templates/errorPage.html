@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{headerFragmentWithTitle :: headerFragmentWithTitle('Главная')}" />
+
+<body>
+
+<div th:replace="~{mainMenu :: mainMenu(index)}" />
+<div class="container-fluid">
+    <h2 class="pt-3">Возникла ошибка при работе.</h2>
+<br>
+    <h4 th:text="${message}"></h4>
+    <h4 th:text="${ex}"></h4>
+</div>
+<div th:replace="~{footerFragment :: footerFragment}" />
+
+</body>
+</html>

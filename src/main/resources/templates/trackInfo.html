@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{headerFragmentWithTitle :: headerFragmentWithTitle('Информация о треке')}" />
+
+<body>
+
+<div th:replace="~{mainMenu :: mainMenu(none)}" />
+<div class="container-fluid">
+    <div class="p-3">
+
+    <h2 th:text="${track.getName()}"></h2>
+    <h4 th:text="@{'Длительность ' + ${track.getDuration()}}"></h4>
+    <h4 th:text="@{'Прослушиваний ' + ${track.getPlaycount()}}"></h4>
+    <h4 th:text="@{'Слушателей ' + ${track.getListeners()}}"></h4>
+    <h4><a th:href="${track.getUrl()}" th:text="@{'Трек на Last.fm'}"/> </h4>
+    <h4 th:text="@{'Исполнитель ' + ${track.getArtist().getName()}}"></h4>
+    <h4><a th:href="${track.getArtist()?.getUrl()}" th:text="@{'Исполнитель на Last.fm'}"/> </h4>
+
+    <h4 th:if="${track.getAlbum() != null}" th:text="@{'Альбом ' + ${track.getAlbum().getTitle()}}"></h4>
+    <h4 th:unless="${track.getAlbum() != null}" th:text="@{'Нет инфо об альбоме'}"></h4>
+
+    <h4 th:text="@{'Теги'}"/>
+    <span th:each="tag : ${track.getToptags()?.getListTags()}">
+        <h5><a th:href="${tag.getUrl()}" th:text="${tag.getName()}"/> </h5>
+    </span>
+        <div th:if="${track.getWiki() != null}">
+            <h4 th:text="@{'Трек вышел ' + ${track.getWiki()?.getPublished()}}"></h4>
+            <h4 th:utext="${track.getWiki()?.getSummary()}"></h4>
+            <h4 th:utext="@{'Wiki: ' + ${track.getWiki()?.getContent()}}"></h4>
+        </div>
+        <h4 th:unless="${track.getWiki() != null}" th:text="'Нет инфо о дате публикации трека и wiki'"></h4>
+    </div>
+</div>
+<div th:replace="~{footerFragment :: footerFragment}" />
+</body>
+</html>

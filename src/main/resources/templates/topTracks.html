@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{headerFragmentWithTitle :: headerFragmentWithTitle('Топ треков')}" />
+
+<body>
+
+<div th:replace="~{mainMenu :: mainMenu(chartTopTracks)}" />
+<div class="container-fluid">
+    <h2 class="p-3" th:text="${tracks.getDescription()}"></h2>
+    <div th:replace="~{topTracksTableFragment :: topTracksTableFragment}" />
+</div>
+
+<div th:replace="~{footerFragment :: footerFragment}" />
+</body>
+</html>
