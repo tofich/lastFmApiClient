@@ -9,7 +9,6 @@
                 <tr>
                     <th>№</th>
                     <th>Название</th>
-                    <th>Длительность (мс)</th>
                     <th>Прослушиваний</th>
                     <th>Исполнитель</th>
                     <th>Послушать на Last.fm</th>
@@ -25,7 +24,6 @@
                             <button class="btn btn-link" th:text="${track.getName()}" type="submit"/>
                         </form>
                     </td>
-                    <td th:text="${track.getDuration()}"/>
                     <td th:text="${track.getPlaycount()}"/>
                     <td><a th:href="${track.getArtist()?.getUrl()}" th:text="${track.getArtist()?.getName()}"/></td>
                     <td><a th:href="${track.getUrl()}" th:text="${track.getName()}"/></td>

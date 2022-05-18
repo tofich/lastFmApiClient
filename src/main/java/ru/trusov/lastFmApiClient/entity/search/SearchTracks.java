@@ -2,12 +2,11 @@ package ru.trusov.lastFmApiClient.entity.search;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
-import ru.trusov.lastFmApiClient.entity.track.Track;
-
+import java.io.Serializable;
 import java.util.List;
 
 @ToString
-public class SearchTracks {
+public class SearchTracks implements Serializable {
 
     private String description;
 

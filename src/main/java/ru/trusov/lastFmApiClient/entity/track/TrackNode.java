@@ -2,7 +2,6 @@ package ru.trusov.lastFmApiClient.entity.track;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.trusov.lastFmApiClient.entity.track.Track;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TrackNode {

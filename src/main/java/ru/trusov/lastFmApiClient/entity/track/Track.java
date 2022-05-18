@@ -1,15 +1,18 @@
 package ru.trusov.lastFmApiClient.entity.track;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
 import ru.trusov.lastFmApiClient.entity.Album;
 import ru.trusov.lastFmApiClient.entity.Image;
 import ru.trusov.lastFmApiClient.entity.artist.Artist;
 import ru.trusov.lastFmApiClient.entity.tag.TopTags;
 import ru.trusov.lastFmApiClient.entity.Wiki;
+import java.io.Serializable;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @ToString
-public class Track {
+public class Track implements Serializable  {
 
     private String name;
     private String mbid;
@@ -27,8 +30,17 @@ public class Track {
         return duration;
     }
 
+    @JsonProperty("duration")
     public void setDuration(String duration) {
-        this.duration = duration;
+        this.duration = "00:00:00";
+        if (!"0".equals(duration) && null != duration){
+            Long durationInMilliseconds = Long.valueOf(duration);
+            long HH = TimeUnit.MILLISECONDS.toHours(durationInMilliseconds);
+            long MM = TimeUnit.MILLISECONDS.toMinutes(durationInMilliseconds) % 60;
+            long SS = TimeUnit.MILLISECONDS.toSeconds(durationInMilliseconds) % 60;
+            String durationInReadableFormat = String.format("%02d:%02d:%02d", HH, MM, SS);
+            this.duration = durationInReadableFormat;
+        }
     }
 
     public Wiki getWiki() {

@@ -3,10 +3,11 @@ package ru.trusov.lastFmApiClient.entity.tag;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
+import java.io.Serializable;
 
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Tag {
+public class Tag implements Serializable {
 
     @JsonProperty("name")
     private String name;

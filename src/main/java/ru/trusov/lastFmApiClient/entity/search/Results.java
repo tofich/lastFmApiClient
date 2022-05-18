@@ -3,11 +3,12 @@ package ru.trusov.lastFmApiClient.entity.search;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
-import ru.trusov.lastFmApiClient.entity.track.Tracks;
+
+import java.io.Serializable;
 
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Results {
+public class Results implements Serializable {
 
     @JsonProperty("opensearch:totalResults")
     private String opensearchTotalResults;

@@ -1,16 +1,16 @@
 package ru.trusov.lastFmApiClient.entity.artist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import lombok.ToString;
 import ru.trusov.lastFmApiClient.entity.Image;
 import ru.trusov.lastFmApiClient.entity.tag.TopTags;
 
+import java.io.Serializable;
 import java.util.List;
 
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Artist {
+public class Artist implements Serializable {
 
     private String name;
     private String url;

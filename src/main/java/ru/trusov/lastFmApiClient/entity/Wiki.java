@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Wiki {
+public class Wiki implements Serializable {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMM yyyy, HH:mm", locale = "en")
     private LocalDateTime published;
