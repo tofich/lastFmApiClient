@@ -9,6 +9,13 @@ public class ArtistsNode {
 
     private Artists artists;
 
+    public ArtistsNode(Artists artists) {
+        this.artists = artists;
+    }
+
+    public ArtistsNode() {
+    }
+
     public Artists getArtists() {
         return artists;
     }

@@ -16,6 +16,13 @@ public class Tag implements Serializable {
     @JsonProperty("taggings")
     private String taggings;
 
+    public Tag(String name) {
+        this.name = name;
+    }
+
+    public Tag() {
+    }
+
     public String getName() {
         return name;
     }

@@ -9,6 +9,13 @@ public class TrackNode {
     @JsonProperty("track")
     private Track track;
 
+    public TrackNode(Track track) {
+        this.track = track;
+    }
+
+    public TrackNode() {
+    }
+
     @JsonProperty("track")
     public Track getTrack() {
         return track;

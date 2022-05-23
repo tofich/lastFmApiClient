@@ -8,6 +8,13 @@ public class TracksNode {
 
     private Tracks tracks;
 
+    public TracksNode(Tracks tracks) {
+        this.tracks = tracks;
+    }
+
+    public TracksNode() {
+    }
+
     public Tracks getTracks() {
         return tracks;
     }

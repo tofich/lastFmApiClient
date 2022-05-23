@@ -5,12 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import ru.trusov.lastFmApiClient.entity.search.Results;
 import ru.trusov.lastFmApiClient.entity.search.SearchTracks;
 import ru.trusov.lastFmApiClient.entity.tag.TopTags;
 import ru.trusov.lastFmApiClient.entity.artist.Artists;
 import ru.trusov.lastFmApiClient.entity.track.Track;
 import ru.trusov.lastFmApiClient.entity.track.Tracks;
 import ru.trusov.lastFmApiClient.repository.ApiRepository;
+
 
 @Service
 public class MainService {
@@ -20,7 +22,7 @@ public class MainService {
     private ApiRepository apiRepository;
 
     @Autowired
-    public void setApiRepository(ApiRepository apiRepository) {
+    public MainService(ApiRepository apiRepository) {
         this.apiRepository = apiRepository;
     }
 
@@ -58,11 +60,11 @@ public class MainService {
     }
 
     @Cacheable(value = "lastFmSearch", key = "{#searchName,#page}")
-    public SearchTracks searchTracks(String searchName, String page) {
-        SearchTracks tracks = apiRepository.findTracks(searchName, page);
+    public Results searchTracks(String searchName, String page) {
+        Results results = apiRepository.findTracks(searchName, page);
         LOGGER.info(String.format("run apiRepository.findTracks(%s, %s)", searchName, page));
         /*--some business logic--*/
-        tracks.setDescription("Результаты поиска \"" + searchName + "\":");
-        return tracks;
+        results.getSearchTracks().setDescription("Результаты поиска \"" + searchName + "\":");
+        return results;
     }
 }

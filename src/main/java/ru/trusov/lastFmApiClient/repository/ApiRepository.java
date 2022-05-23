@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import ru.trusov.lastFmApiClient.entity.search.Results;
 import ru.trusov.lastFmApiClient.entity.search.SearchResult;
-import ru.trusov.lastFmApiClient.entity.search.SearchTracks;
 import ru.trusov.lastFmApiClient.entity.tag.TopTags;
 import ru.trusov.lastFmApiClient.entity.artist.Artists;
 import ru.trusov.lastFmApiClient.entity.artist.ArtistsNode;
@@ -32,7 +32,7 @@ public class ApiRepository {
     private RestTemplate restTemplate;
 
     @Autowired
-    public void setRestTemplate(RestTemplate restTemplate) {
+    public ApiRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -90,7 +90,7 @@ public class ApiRepository {
         return toptags;
     }
 
-    public SearchTracks findTracks(String searchName, String page) {
+    public Results findTracks(String searchName, String page) {
         String url = UriComponentsBuilder
                 .fromUriString(API_URI)
                 .queryParam("method", "track.search")
@@ -100,8 +100,8 @@ public class ApiRepository {
                 .queryParam("format", "json")
                 .build().toString();
         LOGGER.info("-------findTracks url: " + url);
-        SearchTracks tracks = restTemplate.getForObject(url, SearchResult.class).getResults().getSearchTracks();
-        LOGGER.info(tracks.toString());
-        return tracks;
+        Results results = restTemplate.getForObject(url, SearchResult.class).getResults();
+        LOGGER.info(results.toString());
+        return results;
     }
 }

@@ -5,6 +5,7 @@
             http://www.ehcache.org/v3
             http://www.ehcache.org/schema/ehcache-core-3.7.xsd">
     <persistence directory="spring-boot-ehcache/cache" />
+
     <cache-template name="default">
         <expiry>
             <ttl unit="minutes">30</ttl>
@@ -37,6 +38,6 @@
         <value-type>ru.trusov.lastFmApiClient.entity.artist.Artists</value-type>
     </cache>
     <cache alias="lastFmSearch" uses-template="default">
-        <value-type>ru.trusov.lastFmApiClient.entity.search.SearchTracks</value-type>
+        <value-type>ru.trusov.lastFmApiClient.entity.search.Results</value-type>
     </cache>
 </config>

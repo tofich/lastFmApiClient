@@ -18,6 +18,13 @@ public class Artist implements Serializable {
     private List<Artist> similar;
     private TopTags topTags;
 
+    public Artist(String name) {
+        this.name = name;
+    }
+
+    public Artist() {
+    }
+
     public String getName() {
         return name;
     }

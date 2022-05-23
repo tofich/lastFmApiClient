@@ -13,6 +13,13 @@ public class SearchTracks implements Serializable {
     @JsonProperty("track")
     private List<SearchTrack> listTracks;
 
+    public SearchTracks(List<SearchTrack> listTracks) {
+        this.listTracks = listTracks;
+    }
+
+    public SearchTracks() {
+    }
+
     public String getDescription() {
         return description;
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
-import ru.trusov.lastFmApiClient.entity.search.SearchTracks;
+import ru.trusov.lastFmApiClient.entity.search.Results;
 import ru.trusov.lastFmApiClient.entity.tag.TopTags;
 import ru.trusov.lastFmApiClient.entity.artist.Artists;
 import ru.trusov.lastFmApiClient.entity.track.Track;
@@ -23,7 +23,7 @@ public class MainController {
     MainService mainService;
 
     @Autowired
-    public void setMainService(MainService mainService) {
+    public MainController(MainService mainService) {
         this.mainService = mainService;
     }
 
@@ -68,36 +68,10 @@ public class MainController {
     @GetMapping("/track/search")
     public String searchTracks(@RequestParam String search, @RequestParam(required = false) String page, Model model){
         LOGGER.info("Start searchTracks() IN /track/search");
-        if (null == page) page="1";
-        SearchTracks tracks = mainService.searchTracks(search , page);
-        model.addAttribute("tracks", tracks);
+        if (page == null) page="1";
+        Results results = mainService.searchTracks(search , page);
+        model.addAttribute("results", results);
         return "searchTrack";
-    }
-
-    @ExceptionHandler(UnknownHostException.class)
-    public String unknownHostException(UnknownHostException ex, Model model){
-        LOGGER.error("UnknownHostException", ex);
-        model.addAttribute("ex", ex);
-        model.addAttribute("message", "Проверьте соединение с интернетом или повторите позднее.");
-        return "errorPage";
-    }
-
-    @ExceptionHandler(HttpClientErrorException.class)
-    public String httpClientErrorException(HttpClientErrorException ex, Model model){
-        LOGGER.error("HttpClientErrorException", ex);
-        LOGGER.warn("-----" + ex.getMessage() + " with code " + ex.getStatusCode().toString());
-        model.addAttribute("ex", ex);
-        model.addAttribute("message", ex.getMessage());
-        return "errorPage";
-
-    }
-
-    @ExceptionHandler(NullPointerException.class)
-    public String httpNullPointerException(NullPointerException ex, Model model){
-        LOGGER.error("NullPointerException", ex);
-        model.addAttribute("ex", ex);
-        model.addAttribute("message", "Ничего не найдено, повторите попытку или измените запрос.");
-        return "errorPage";
     }
 
 }

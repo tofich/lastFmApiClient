@@ -26,6 +26,14 @@ public class Track implements Serializable  {
     private Wiki wiki;
     private List<Image> image;
 
+    public Track() {
+    }
+
+    public Track(String name, String mbid) {
+        this.name = name;
+        this.mbid = mbid;
+    }
+
     public String getDuration() {
         return duration;
     }

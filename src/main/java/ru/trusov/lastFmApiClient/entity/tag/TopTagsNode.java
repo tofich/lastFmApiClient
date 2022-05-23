@@ -11,6 +11,13 @@ public class TopTagsNode {
     @JsonProperty("tags")
     TopTags toptags;
 
+    public TopTagsNode(TopTags toptags) {
+        this.toptags = toptags;
+    }
+
+    public TopTagsNode() {
+    }
+
     public TopTags getToptags() {
         return toptags;
     }

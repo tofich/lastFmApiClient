@@ -13,6 +13,13 @@ public class SearchTrack extends Track implements Serializable {
     @JsonProperty("artist")
     private String nameArtist;
 
+    public SearchTrack(String name, String mbid) {
+        super(name, mbid);
+    }
+
+    public SearchTrack() {
+    }
+
     public String getNameArtist() {
         return nameArtist;
     }

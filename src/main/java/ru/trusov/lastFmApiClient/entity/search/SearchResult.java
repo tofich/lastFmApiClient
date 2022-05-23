@@ -11,6 +11,13 @@ public class SearchResult implements Serializable {
     @JsonProperty("results")
     private Results results;
 
+    public SearchResult(Results results) {
+        this.results = results;
+    }
+
+    public SearchResult() {
+    }
+
     public Results getResults() {
         return results;
     }
