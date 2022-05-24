@@ -19,7 +19,7 @@ import ru.trusov.lastFmApiClient.entity.track.Tracks;
 import ru.trusov.lastFmApiClient.entity.track.TracksNode;
 
 @Repository
-public class ApiRepository {
+public class ApiRepository implements RepositoryInterface {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiRepository.class);
 
